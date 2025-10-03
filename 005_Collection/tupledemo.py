@@ -41,8 +41,52 @@ t = (100,200,300,400,500,600)
 #     print(t[i])
 
 
-x = (10,20,30,40,50)
-y =(1,2,3,4,6,7)
+# d = {
+#     10 : "hello",
+#     "name":"tops",
+#     (10,20):"abc",
+ 
+# }
 
-z = x+y
-print(z*2)
+# print(d.get("c",45))
+# print(d)
+
+# check if numbe ris armstrong or not
+num = int(input("Enter a number : "))
+temp = num
+sum = 0
+while num > 0:
+    digit = num % 10
+    sum = sum + digit ** 3
+    num = num // 10
+if temp == sum:
+    print("Armstrong")
+else:
+    print("Not Armstrong")
+
+
+#list in python
+# a = [10,20,30,40,"ss",2223.22]
+# b = list((1,2,3,4))
+# print(a)
+# print(len(a)) 
+# print(type(a))
+
+# print(a[1:5])
+# a.append("xyz")
+# print(a)
+
+
+#List methods
+# a.insert(2,"hello")
+# a.remove(30)
+# a.pop()
+# a.clear()
+# a.sort() #only homogenous data
+# a.reverse()
+# print(a)
+
+# print(a.count(20))
+# print(a.index(40))    
+# a.extend([100,200,300])
+# print(a)

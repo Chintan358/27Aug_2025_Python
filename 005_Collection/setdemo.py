@@ -1,4 +1,4 @@
-# s = {100,20,30,40,50,60,70,70,1,True,0,False}
+s = {100,20,30,40,50,60,70,70,1,True,0,False}
 # s.add(1000)
 # s.remove(10000)
 # s.discard(10000)
@@ -40,9 +40,20 @@
 
 # x  =frozenset({10,20,30})
 
-x = {10,20,30,40,50}
-y  ={100,200}
+# x = {10,20,30,40,50}
+# y  ={100,200}
 
-print(x.issuperset(y))
-print(y.issubset(x))
-print(x.isdisjoint(y))
+# print(x.issuperset(y))
+# print(y.issubset(x))
+# print(x.isdisjoint(y))
+
+# s.clear()
+# print(s)
+
+# a = [10,20,30]
+# b = a
+# b.append(40)
+# print(a)
+
+t  =1,
+print(type(t))
