@@ -34,10 +34,10 @@ l = [1,2,3,45,69,7,84,56,77,8]
 # k = filter(lambda x : x%2!=0,l)
 # print(list(k))
 
-subjects  = ["python",'java','node','android','sql']
+# subjects  = ["python",'java','node','android','sql']
 
-k = filter(lambda x : "a" in x ,subjects)
-print(list(k))
+# k = filter(lambda x : "a" in x ,subjects)
+# print(list(k))
 
 # # k = map(lambda x : len(x),subjects)
 # x = list(k)
@@ -46,3 +46,29 @@ print(list(k))
 # print(list(m))
 
 # k = [1,2,3,4,5,6,7,8,9,10,16]
+
+# import math
+
+# def checkPsquare(a):
+#     k = math.sqrt(a)
+#     if k.is_integer():
+#         return k
+
+# r  =filter(checkPsquare,k)
+# print(list(r))
+
+
+from functools import reduce
+
+# l = [10,20,34,55,68,974,1,2,30]
+
+# def max(x,y):
+   
+#     if x>y:
+#         return x
+#     else:
+#         return y
+    
+# k = reduce(max,l)
+# k = reduce(lambda x,y:x if x>y else y,l)
+# print(k)
