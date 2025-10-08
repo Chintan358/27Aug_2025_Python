@@ -1,5 +1,5 @@
-import math
-import random
+# import math
+# import random
 
 # print(math.sqrt(25))
 # print(math.floor(25.66))
@@ -15,5 +15,7 @@ import random
 # print(k)
 
 
-from datetime import datetime
-print(datetime.now())
+# from datetime import datetime
+# print(datetime.now())
+
+

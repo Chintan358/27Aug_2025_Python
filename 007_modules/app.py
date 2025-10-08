@@ -12,8 +12,13 @@
 # msg()
 # add(50,60)
 # print(l)
-import demo as d
-import test as t
+# import demo as d
+# import test as t
 
-d.msg()
-t.msg()
+# d.msg()
+# t.msg()
+
+
+# from Demo import Calc
+
+# Calc.add(10,20)
