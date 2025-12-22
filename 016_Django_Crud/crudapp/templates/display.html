@@ -16,6 +16,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Age</th>
+            <th colspan="2">Action</th>
         </tr>
         {%for st in students%}
         <tr>
@@ -24,6 +25,8 @@
             <td>{{st.email}}</td>
             <td>{{st.phone}}</td>
             <td>{{st.age}}</td>
+            <td><a href="{%url 'delete'%}?did={{st.id}}">Delete</a></td>
+            <td><a href="{%url 'update'%}?uid={{st.id}}">Update</a></td>
 
         </tr>
         {%endfor%}
