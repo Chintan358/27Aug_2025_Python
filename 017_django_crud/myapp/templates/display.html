@@ -93,6 +93,7 @@
                     <th>Name</th>
                     <th>Price</th>
                     <th>Qty</th>
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
 
@@ -101,12 +102,14 @@
                 {% for p in products %}
                 <tr>
                     <td>
-                        <img src="{{p.image.url}}" alt="product">
+                        <img src="{{p.image.url}}" alt="{{p.image.url}}">
                     </td>
                     <td>{{ p.category.name }}</td>
                     <td>{{ p.name }}</td>
                     <td>₹ {{ p.price }}</td>
                     <td>{{ p.qty }}</td>
+                    <td><a href="{%url 'delete'%}?id={{p.id}}">Delete</a></td>
+                    <td><a href="{%url 'edit'%}?id={{p.id}}">Update</a></td>
                 </tr>
                 {% endfor %}
                 {% else %}
