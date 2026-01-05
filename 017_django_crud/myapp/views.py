@@ -43,7 +43,7 @@ def register(request):
                 image = file
             )
         
-        return redirect("index")
+        return redirect("display")
     
 
 def display(request):
@@ -60,7 +60,8 @@ def delete_product(request):
     return redirect("display")
 
 def product_by_id(request):
+    products = Product.objects.all()
     categories = Category.objects.all()
     id = request.GET['id']
     prod = Product.objects.get(pk=id)
-    return render(request,"index.html",{"prod":prod,"categories":categories})
+    return render(request,"display.html",{"prod":prod,"categories":categories,"products":products})

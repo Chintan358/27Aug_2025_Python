@@ -38,7 +38,7 @@
 
         th,
         td {
-            padding: 12px;
+            padding: 18px;
             text-align: center;
             border-bottom: 1px solid #e2e8f0;
             font-size: 14px;
@@ -77,10 +77,15 @@
                 transform: translateY(0);
             }
         }
-    </style>
-</head>
 
-<body>
+        input {
+            width: 70px;
+        }
+
+        select {
+            width: 70px;
+        }
+    </style>
 
     <div class="container">
         <h2>Product List</h2>
@@ -100,6 +105,34 @@
             <tbody>
                 {% if products %}
                 {% for p in products %}
+                {%if p.id == prod.id%}
+                <tr>
+                    <form action="{%url 'register'%}" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        <input type="hidden" value="{{p.id}}" name="id">
+                        <td>
+                            <img src="{{p.image.url}}" name="image" alt="{{p.image.url}}">
+                            <input type="file" name="file">
+                        </td>
+                        <td>
+
+                            <select name="category" id="category">
+                                <option value="0">--- Select Category ---</option>
+                                {%for i in categories%}
+                                <option value="{{i.id}}" {%if prod.category.name == i.name%} selected {%endif%}>{{i.name}}
+                                </option>
+                                {%endfor%}
+
+                            </select>
+                        </td>
+                        <td><input type="text" value="{{ p.name }}" name="name"></td>
+                        <td><input type="text" value="{{ p.price }}" name="price"> </td>
+                        <td><input type="text" value="{{ p.qty }}" name="qty"> </td>
+                        <td><input type="submit"></td>
+                    </form>
+                </tr>
+                {%else%}
+
                 <tr>
                     <td>
                         <img src="{{p.image.url}}" alt="{{p.image.url}}">
@@ -111,6 +144,8 @@
                     <td><a href="{%url 'delete'%}?id={{p.id}}">Delete</a></td>
                     <td><a href="{%url 'edit'%}?id={{p.id}}">Update</a></td>
                 </tr>
+                {%endif%}
+
                 {% endfor %}
                 {% else %}
                 <tr>
@@ -122,6 +157,7 @@
         <a href="{%url 'index'%}">Back to register</a>
     </div>
 
-</body>
+
+    </body>
 
 </html>
