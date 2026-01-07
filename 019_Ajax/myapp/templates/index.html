@@ -12,7 +12,7 @@
     <script>
 
         $(document).ready(function () {
-
+            countries()
         })
 
         function get() {
@@ -33,6 +33,40 @@
             )
         }
 
+        function countries() {
+            $.get("countries", {}, function (rt) {
+                options = "<option value='0'>---select country---</option>"
+                rt.countries.map(ele => {
+                    options += `<option value=${ele.id}>${ele.name}</option>`
+                })
+
+                $("#country").html(options)
+            })
+        }
+
+        function states(cid) {
+            $.get("states", { cid }, function (rt) {
+                options = "<option value='0'>---select state---</option>"
+                rt.states.map(ele => {
+                    options += `<option value=${ele.id}>${ele.name}</option>`
+                })
+
+                $("#state").html(options)
+            })
+        }
+
+        function cities(sid) {
+            $.get("cities", { sid }, function (rt) {
+                options = "<option value='0'>---select city---</option>"
+                rt.cities.map(ele => {
+                    options += `<option value=${ele.id}>${ele.name}</option>`
+                })
+
+                $("#city").html(options)
+            })
+        }
+
+
     </script>
 
 </head>
@@ -42,6 +76,21 @@
     <input type="text" id="data" onkeyup="get()">
     <button onclick="get()">Submit</button>
     <div id="tdata"></div>
+
+    <hr>
+    <br>
+
+    <select name="country" id="country" onchange="states(value)">
+
+    </select>
+
+    <select name="state" id="state" onchange="cities(value)">
+        <option value="0">---Select state---</option>
+    </select>
+
+    <select name="city" id="city">
+        <option value="0">---Select City---</option>
+    </select>
 </body>
 
 </html>
