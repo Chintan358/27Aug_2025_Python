@@ -7,5 +7,7 @@ urlpatterns = [
     path("authors/<id>",AutherUpdateAPI.as_view()),
 
     path("books/author/<id>",addbook,name="addbook"),
-    path("books",viewbook,name="books")
+     path("books/author/<id>/<bid>",updatebook,name="updatebook"),
+    path("books",viewbook,name="books"),
+    path("books/<id>",BookById.as_view())
 ]
