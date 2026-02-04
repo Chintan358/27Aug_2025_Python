@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework.decorators import APIView,api_view,parser_classes
+from rest_framework.decorators import APIView,api_view,permission_classes
 from rest_framework.response import Response
 from crudapp.models import *
 from crudapp.serializer import *
@@ -8,13 +8,14 @@ from crudapp.permissions import IsSuperUser
 # Create your views here.
 class AuthorAPI(APIView):
 
-    permission_classes=[IsSuperUser]
-
+    
+    @permission_classes([IsAuthenticated])
     def get(self,request):
         authors = Author.objects.all()
         ser = AuthorSerializer(authors,many=True)
         return Response({"data":ser.data})
 
+    @permission_classes([IsSuperUser])
     def post(self,request):
         ser = AuthorSerializer(data=request.data)
         if not ser.is_valid():
@@ -26,17 +27,19 @@ class AuthorAPI(APIView):
 class AutherUpdateAPI(APIView):   
 
 
-
+    @permission_classes([IsAuthenticated])
     def get(self,request,id):
         author = Author.objects.get(pk=id)
         ser  = AuthorSerializer(author)
         return Response({"data":ser.data})
     
+    @permission_classes([IsSuperUser])
     def delete(self,request,id):
         author = Author.objects.get(pk=id)
         author.delete()
         return Response({"message":"author deleted"})
     
+    @permission_classes([IsSuperUser])
     def put(self,request,id):
         author = Author.objects.get(pk=id)
         ser = AuthorSerializer(author,request.data)
@@ -48,7 +51,7 @@ class AutherUpdateAPI(APIView):
         
 
 @api_view(['POST'])
-@parser_classes([IsSuperUser])
+@permission_classes([IsSuperUser])
 def addbook(request,id):
     data = request.data
     data.update({"author":id})
@@ -60,6 +63,7 @@ def addbook(request,id):
             return Response({"data":ser.data})
     
 @api_view(["GET"])
+@permission_classes([AllowAny])
 def viewbook(request):
     books = Book.objects.all()
     ser = BookSerializer(books,many=True)
@@ -68,17 +72,20 @@ def viewbook(request):
 
 class BookById(APIView):
      
+     @permission_classes([IsAuthenticated])
      def get(self,request,id):
         books = Book.objects.get(pk=id)
         ser =  BookSerializer(books)
         return Response({"data":ser.data})
      
+     @permission_classes([IsSuperUser])
      def delete(self,request,id):
         books = Book.objects.get(pk=id)
         books.delete()
         return Response({"message":"book deleted"})
      
 @api_view(['PUT'])
+@permission_classes([IsSuperUser])
 def updatebook(request,id, bid):
     data = request.data
     data.update({"author":id})

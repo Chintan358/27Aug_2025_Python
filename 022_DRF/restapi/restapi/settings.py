@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'myapp',
-    'crudapp'
+    'crudapp',
+    'cutomeuser'
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,8 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+AUTH_USER_MODEL="cutomeuser.CustomeUser"
 
 ROOT_URLCONF = 'restapi.urls'
 
